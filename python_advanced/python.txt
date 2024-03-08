@@ -9,3 +9,22 @@ https://www.youtube.com/watch?v=1WpKsY9LBlY
 https://www.youtube.com/watch?v=QLTdOEn79Rc&list=PLqnslRFeH2UqLwzS0AwKDKLrpYBKzLBy2
 
 https://towardsdatascience.com/10-topics-python-intermediate-programmer-should-know-3c865e8533d6
+
+https://www.youtube.com/watch?v=QLTdOEn79Rc&list=PLqnslRFeH2UqLwzS0AwKDKLrpYBKzLBy2
+
+https://www.youtube.com/watch?v=2lUx8dBGFyU&list=PLMSYnjOjlErdKV-gCC_RDxqfD10U4wZww&index=3
+
+https://www.youtube.com/watch?v=J6WBLSde7nQ&list=PLbGui_ZYuhijd1hUF2VWiKt8FHNBa7kGb&index=3
+
+https://towardsdatascience.com/10-topics-python-intermediate-programmer-should-know-3c865e8533d6
+
+https://www.youtube.com/watch?v=ndn_hKC7Nxo
+
+https://www.youtube.com/playlist?app=desktop&list=PLMSYnjOjlErdKV-gCC_RDxqfD10U4wZww
+
+https://python.plainenglish.io/advanced-python-classes-objects-and-mro-423bb01521fb
+
+https://medium.com/@aserdargun/advanced-oop-in-python-a5f6130da291
+
+https://medium.com/@ramanbazhanau/mastering-advanced-oop-concepts-in-python-advanced-class-features-a8790fa2b5a2
+
