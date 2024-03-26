@@ -8,4 +8,4 @@ def power(x, n):
             result *= x
         return result
     
-print(power(2, 2))
+print(power(2, 13))
