@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=uVM9vPu2z0g
+
+python -m venv venv
