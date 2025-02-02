@@ -1,0 +1,22 @@
+https://www.youtube.com/watch?v=D3sEEluFJRo
+
+https://www.youtube.com/watch?v=qS7d_Ri46aA
+
+
+conda activate django2
+
+python --version
+
+
+https://stackoverflow.com/questions/40245232/cant-create-django-app-in-conda-environment
+
+conda create -n <nameoftheapplication> python=3.6
+source activate <nameoftheapplication> Note: For Windows just put activate
+pip install django
+django-admin.py startproject <nameoftheapplication>
+cd <nameoftheapplication>
+ls
+
+conda create --name meu_ambiente python=3.9
+
+conda activate meu_ambiente
