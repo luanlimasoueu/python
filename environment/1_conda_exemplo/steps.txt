@@ -1,0 +1,3 @@
+conda create --name meu_ambiente python=3.9
+
+conda activate meu_ambiente
