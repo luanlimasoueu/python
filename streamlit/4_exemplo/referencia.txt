@@ -1,0 +1,4 @@
+https://medium.com/@coutinholps/dashboard-r%C3%A1pido-com-python-e-streamlit-6aa7df1fda49
+
+
+https://github.com/lpcoutinho/dashboard_rapido/tree/main
