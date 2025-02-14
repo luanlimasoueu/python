@@ -6,3 +6,6 @@ def write():
     print( "Hey")
     time.sleep(1)
     print( "There")
+
+def main():
+    for _ in 
