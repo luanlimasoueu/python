@@ -1,13 +1,13 @@
 class Classe(supcl1, supcl2):
-"""
-Isto é uma classe
-"""
-clsvar = []
-def __init__(self, args):
-"""
-Inicializador da classe
-"""
-<bloco de código>
+    """
+    Isto é uma classe
+    """
+    clsvar = []
+    def __init__(self, args):
+        """
+            Inicializador da classe
+        """
+
 def __done__(self):
 """
 Destrutor da classe
