@@ -28,8 +28,9 @@ class Classe(supcl1, supcl2):
         """
         Método estático
         """
--= Classe()
+obj= Classe()
 obj.metodo()
+
 Classe.cls_metodo()
 Classe.est_metodo()
 
