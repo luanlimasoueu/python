@@ -47,17 +47,15 @@ class Anfibio(Carro, Barco):
     Classe de anfíbios
     """
     def __init__(self, velocidade_em_terra=80,
-    velocidade_na_agua=4, pistoes=6, helices=2):
-    """
-    Inicializa o objeto
-    """
+        velocidade_na_agua=4, pistoes=6, helices=2):
+        """ Inicializa o objeto"""
 # É preciso evocar o __init__ de cada classe pai
-Carro.__init__(self, velocidade=velocidade_em_terra,
-pistoes=pistoes)
-Barco.__init__(self, velocidade=velocidade_na_agua,
-helices=helices)
+        Carro.__init__(self, velocidade=velocidade_em_terra,pistoes=pistoes)
+        Barco.__init__(self, velocidade=velocidade_na_agua,
+        helices=helices)
+    
 novo_anfibio = Anfibio()
 for atr in dir(novo_anfibio):
 # Se não for método especial:
-if not atr.startswith('__'):
-print atr, '=', getattr(novo_anfibio, atr)
+    if not atr.startswith('__'):
+        print (atr, '=', getattr(novo_anfibio, atr))
