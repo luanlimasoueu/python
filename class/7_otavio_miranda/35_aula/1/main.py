@@ -7,3 +7,4 @@ p1.parar_comer()
 p1.falar('POO')
 
 print(p1.nome)
+print(p1.get_ano_nascimento())
