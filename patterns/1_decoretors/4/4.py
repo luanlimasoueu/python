@@ -3,7 +3,8 @@ class Forma:
     def tipo(self):
         return "Forma"
 
-class Circulo(Forma):
+*]
+Circulo(Forma):
     @property
     def tipo(self):
         return "Círculo"
