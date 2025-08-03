@@ -1,0 +1,1 @@
+https://realpython.com/ref/glossary/abstract-base-class/#:~:text=Em%20Python%2C%20uma%20classe%20base,abstratos%20gerar%C3%A1%20uma%20exce%C3%A7%C3%A3o%20TypeError%20.
