@@ -1,91 +1,84 @@
-# Abstract course
-class Course:
-
+class Sanduiche:
     def __init__(self):
-        self.Fee()
-        self.available_batches()
-
-    def Fee(self):
-        raise NotImplementedError
-
-    def available_batches(self):
-        raise NotImplementedError
-
-    def __repr__(self):
-        return 'Fee : {0.fee} | Batches Available : {0.batches}'.format(self)
-
-# concrete course
-class DSA(Course):
-
-    """Class for Data Structures and Algorithms"""
-
-    def Fee(self):
-        self.fee = 8000
-
-    def available_batches(self):
-        self.batches = 5
+        self.pao = None
+        self.carne = None
+        self.saladas = []
+        self.molhos = []
 
     def __str__(self):
-        return "DSA"
+        return (
+            f"Pão: {self.pao}\n"
+            f"Carne: {self.carne}\n"
+            f"Saladas: {', '.join(self.saladas)}\n"
+            f"Molhos: {', '.join(self.molhos)}"
+        )
 
-# concrete course
-class SDE(Course):
+from abc import ABC, abstractmethod
 
-    """Class for Software Development Engineer"""
+class SanduicheBuilder(ABC):
+    def __init__(self):
+        self.sanduiche = Sanduiche()
 
-    def Fee(self):
-        self.fee = 10000
+    @abstractmethod
+    def escolher_pao(self):
+        pass
 
-    def available_batches(self):
-        self.batches = 4
+    @abstractmethod
+    def escolher_carne(self):
+        pass
 
-    def __str__(self):
-        return "SDE"
+    @abstractmethod
+    def adicionar_saladas(self):
+        pass
 
-# concrete course
-class STL(Course):
+    @abstractmethod
+    def adicionar_molhos(self):
+        pass
 
-    """Class for Standard Template Library"""
+    def get_sanduiche(self):
+        return self.sanduiche
 
-    def Fee(self):
-        self.fee = 5000
+class SanduicheSimplesBuilder(SanduicheBuilder):
+    def escolher_pao(self):
+        self.sanduiche.pao = "Pão francês"
 
-    def available_batches(self):
-        self.batches = 7
+    def escolher_carne(self):
+        self.sanduiche.carne = "Frango grelhado"
 
-    def __str__(self):
-        return "STL"
+    def adicionar_saladas(self):
+        self.sanduiche.saladas = ["Alface", "Tomate"]
 
-# Complex Course
-class ComplexCourse:
+    def adicionar_molhos(self):
+        self.sanduiche.molhos = ["Maionese"]
 
-    def __repr__(self):
-        return 'Fee : {0.fee} | available_batches: {0.batches}'.format(self)
+class SanduicheVeganoBuilder(SanduicheBuilder):
+    def escolher_pao(self):
+        self.sanduiche.pao = "Pão integral"
 
-# Complex course
-class Complexcourse(ComplexCourse):
+    def escolher_carne(self):
+        self.sanduiche.carne = "Tofu grelhado"
 
-    def Fee(self):
-        self.fee = 7000
+    def adicionar_saladas(self):
+        self.sanduiche.saladas = ["Alface", "Cenoura", "Tomate"]
 
-    def available_batches(self):
-        self.batches = 6
+    def adicionar_molhos(self):
+        self.sanduiche.molhos = ["Mostarda", "Molho tahine"]
 
-# construct course
-def construct_course(cls):
 
-    course = cls()
-    course.Fee()
-    course.available_batches()
+class Cozinheiro:
+    def construir_sanduiche(self, builder: SanduicheBuilder):
+        builder.escolher_pao()
+        builder.escolher_carne()
+        builder.adicionar_saladas()
+        builder.adicionar_molhos()
+        return builder.get_sanduiche()
 
-    return course    # return the course object
+def main():
+    builder = SanduicheVeganoBuilder()  # Ou SanduicheSimplesBuilder()
+    cozinheiro = Cozinheiro()
+    sanduiche = cozinheiro.construir_sanduiche(builder)
+    print("Sanduíche pronto:")
+    print(sanduiche)
 
-# main method
 if __name__ == "__main__":
-
-    dsa = DSA()  # object for DSA course
-    sde = SDE()  # object for SDE course
-    stl = STL()  # object for STL course
-
-    complex_course = construct_course(Complexcourse)
-    print(complex_course)
+    main()
