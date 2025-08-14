@@ -1,0 +1,2 @@
+https://grzegorz-makowski.medium.com/understanding-self-and-cls-in-python-b674f5e5951d
+
