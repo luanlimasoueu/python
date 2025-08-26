@@ -1,0 +1,7 @@
+Client
+   |
+   v
+Abstraction -----------------> Implementor
+    | (usa/composição)             ^
+    v                              |
+RefinedAbstraction        ConcreteImplementorA/B

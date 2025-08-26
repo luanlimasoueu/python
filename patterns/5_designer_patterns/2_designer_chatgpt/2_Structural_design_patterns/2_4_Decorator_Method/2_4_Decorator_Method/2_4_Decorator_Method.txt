@@ -1,0 +1,13 @@
+Client
+   |
+   v
+Component (interface comum)
+   ^
+   |
+ConcreteComponent  <-- objeto "núcleo"
+   ^
+   |
+Decorator (envolve outro Component)
+   ^
+   |
+ConcreteDecorators (variações que adicionam comportamentos)

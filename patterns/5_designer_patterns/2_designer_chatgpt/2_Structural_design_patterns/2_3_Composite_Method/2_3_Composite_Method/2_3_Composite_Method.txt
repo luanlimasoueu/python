@@ -1,0 +1,7 @@
+                Client
+                   |
+             Component (interface comum)
+              /                \
+             v                  v
+          Leaf             Composite
+        (objeto)   (contém vários Components)
