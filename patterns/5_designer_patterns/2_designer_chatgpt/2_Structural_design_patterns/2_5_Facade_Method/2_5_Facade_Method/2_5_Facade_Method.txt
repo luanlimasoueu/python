@@ -1,0 +1,9 @@
+Client
+   |
+   v
+Facade (interface simplificada)
+   |
+   v
+-------------------------------------
+|   SubsystemA   SubsystemB   ...   |
+-------------------------------------
