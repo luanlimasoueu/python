@@ -1,0 +1,9 @@
+Client
+   |
+   v
+Invoker ----------------------> Command (interface)
+                                 ^
+                                 |
+                     ConcreteCommand
+                                 |
+                             Receiver

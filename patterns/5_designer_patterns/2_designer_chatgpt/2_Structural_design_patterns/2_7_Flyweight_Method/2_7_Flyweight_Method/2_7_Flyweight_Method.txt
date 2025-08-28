@@ -1,0 +1,9 @@
+Client
+   |
+   v
+FlyweightFactory -----> Flyweight (estado intrínseco)
+          |                   ^
+          |                   |
+          +-----> ConcreteFlyweight
+          
+Extrinsic state fornecido pelo Client
