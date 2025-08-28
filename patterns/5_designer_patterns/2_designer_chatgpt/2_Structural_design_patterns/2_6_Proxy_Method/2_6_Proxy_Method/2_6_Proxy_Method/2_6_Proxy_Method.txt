@@ -1,0 +1,8 @@
+Client
+   |
+   v
+Subject (interface comum)
+   ^
+   |
+Proxy ------------------> RealSubject
+      (controle)          (lógica real)
