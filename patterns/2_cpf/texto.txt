@@ -1,0 +1,72 @@
+🔎 Ordem de execução
+1. Criação do objeto
+
+Quando você faz:
+
+cpf_teste = ValidaCpf("746.824.890-70")
+
+
+1️⃣ __init__ é chamado automaticamente, recebendo o argumento "746.824.890-70".
+2️⃣ Dentro de __init__, há self.cpf = cpf → isso chama o setter @cpf.setter.
+3️⃣ No setter:
+
+O CPF é "limpo" com re.sub(r'[^0-9]', '', cpf), removendo pontos e traço → vira "74682489070".
+
+Esse valor é salvo em self._cpf.
+4️⃣ Volta para __init__, e imprime:
+
+CPF recebido: 74682489070
+
+
+📌 Conclusão até aqui:
+O CPF foi armazenado já sem formatação, pronto para validação.
+
+2. Chamada do método valida()
+
+Quando você faz:
+
+cpf_teste.valida()
+
+
+1️⃣ O método valida() é executado.
+2️⃣ Ele verifica se existe self.cpf (o @property é chamado e retorna self._cpf).
+3️⃣ Se existir, ele pega os 9 primeiros dígitos do CPF:
+
+self.cpf[:9]  # Ex: "746824890"
+
+
+4️⃣ Chama o método estático __calcula_digitos:
+
+Gera o primeiro dígito verificador e retorna os 10 primeiros números.
+5️⃣ Chama novamente __calcula_digitos, agora com digito=True:
+
+Calcula o segundo dígito verificador e retorna os 11 números do CPF válido.
+6️⃣ Compara esse CPF gerado com self.cpf.
+7️⃣ Se forem iguais, retorna True, senão False.
+
+3. Cálculo dos dígitos (detalhe importante)
+
+Dentro de __calcula_digitos:
+
+1️⃣ Define a lista de multiplicadores:
+
+Primeiro dígito → [10, 9, 8, 7, 6, 5, 4, 3, 2]
+
+Segundo dígito → [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+
+2️⃣ Faz o somatório da multiplicação de cada dígito por seu peso.
+3️⃣ Aplica a fórmula (soma * 10) % 11.
+4️⃣ Se resultado > 9, o dígito vira 0.
+5️⃣ Concatena o dígito ao CPF parcial e retorna.
+
+Resumo do Fluxo
+
+📌 Ordem geral de execução:
+
+Instanciação → chama __init__ → chama setter → armazena CPF limpo → imprime.
+
+Chamada de valida() → pega 9 dígitos → calcula 1º dígito → calcula 2º dígito → compara → retorna True/False.
+
+Getter (@property) é chamado sempre que você usa self.cpf.
+
+Método estático só é executado quando chamado dentro de valida()
