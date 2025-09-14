@@ -1,0 +1,93 @@
+🔒 Imutabilidade com frozen=True no dataclass
+
+Quando você usa @dataclass(frozen=True), os objetos criados não podem ser modificados após serem instanciados — eles se tornam quase como tuplas nomeadas.
+
+Isso é útil quando você quer garantir que os dados não mudem depois de criados, ajudando a evitar bugs em sistemas que dependem de consistência (por exemplo, em configuração, cache, ou chaves de dicionário).
+
+📌 Exemplo básico de frozen=True
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Config:
+    host: str
+    port: int
+
+c = Config("localhost", 8080)
+print(c.host)  # localhost
+
+# Tentando alterar um atributo:
+c.port = 9090  # ❌ Erro! dataclasses.FrozenInstanceError
+
+
+Saída do erro:
+
+dataclasses.FrozenInstanceError: cannot assign to field 'port'
+
+
+✅ Isso garante que Config é imutável.
+
+📌 Objetos frozen são hashable
+
+Objetos imutáveis podem ser usados como chaves de dicionário ou adicionados a sets:
+
+c1 = Config("localhost", 8080)
+c2 = Config("localhost", 8080)
+
+print(c1 == c2)  # True
+d = {c1: "Servidor A"}
+print(d[c2])     # Servidor A (funciona porque são hashable)
+
+⚠️ Atenção: Imutabilidade não é recursiva!
+
+Se você tiver um atributo mutável (lista, dict, set), ele ainda poderá ser alterado, mesmo em uma dataclass frozen.
+
+from dataclasses import dataclass, field
+
+@dataclass(frozen=True)
+class Team:
+    name: str
+    members: list = field(default_factory=list)
+
+t = Team("Pythonistas")
+t.members.append("Luan")  # ✅ Isso funciona! Lista continua mutável
+print(t.members)  # ['Luan']
+
+
+Se você realmente quer imutabilidade total, use tuplas em vez de listas:
+
+@dataclass(frozen=True)
+class Team:
+    name: str
+    members: tuple = field(default_factory=tuple)
+
+t = Team("Pythonistas", members=("Luan",))
+# t.members += ("Maria",)  # ❌ Erro! Tupla é imutável
+
+📌 frozen e __post_init__
+
+Quando usamos frozen=True, não podemos modificar atributos dentro do __post_init__ da forma tradicional.
+Mas há uma solução: usar object.__setattr__, que bypassa a imutabilidade durante a inicialização.
+
+Exemplo:
+
+@dataclass(frozen=True)
+class Order:
+    product: str
+    quantity: int
+    total: float = 0.0
+
+    def __post_init__(self):
+        object.__setattr__(self, "total", self.quantity * 10.0)
+
+o = Order("Caneta", 3)
+print(o.total)  # 30.0
+
+✅ Quando usar frozen=True
+
+Configurações que não devem ser alteradas.
+
+Objetos que precisam ser usados como chaves de dicionário.
+
+Objetos que precisam ser thread-safe (imutabilidade evita condições de corrida).
+
+Modelos de dados que você quer tratar como "valores" (Value Objects em DDD).

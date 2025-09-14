@@ -1,0 +1,141 @@
+📚 Aula: Introdução ao dataclass e field em Python
+1. O que é dataclass?
+
+O módulo dataclasses foi introduzido no Python 3.7 para facilitar a criação de classes que são usadas principalmente para armazenar dados.
+
+Antes do dataclass, teríamos que escrever muito código repetitivo, como __init__, __repr__, __eq__ etc.
+
+2. Importação
+from dataclasses import dataclass, field
+
+
+@dataclass → um decorador que transforma sua classe, gerando automaticamente métodos úteis.
+
+field → usado para configurar atributos específicos (valores padrão, inicialização, comportamento especial).
+
+3. Criando uma dataclass
+📌 Exemplo simples
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+
+
+Isso automaticamente cria:
+
+__init__(self, name, age)
+
+__repr__(self)
+
+__eq__(self, other)
+
+✅ Exemplo de uso:
+
+p1 = Person("Luan", 25)
+print(p1)  # Person(name='Luan', age=25)
+
+4. Recursos do dataclass
+4.1 ✅ Inicialização automática
+
+Você não precisa escrever __init__ manualmente.
+O decorador gera tudo:
+
+@dataclass
+class Product:
+    id: int
+    name: str
+    price: float = 0.0  # valor padrão
+
+p = Product(1, "Caneta")
+print(p)  # Product(id=1, name='Caneta', price=0.0)
+
+4.2 ✅ Comparação entre objetos
+
+dataclass gera automaticamente __eq__, então você pode comparar objetos:
+
+p1 = Product(1, "Caneta")
+p2 = Product(1, "Caneta")
+print(p1 == p2)  # True
+
+4.3 ✅ Ordenação
+
+Se quiser, pode habilitar comparação de ordem (<, >, <=, >=):
+
+from dataclasses import dataclass
+
+@dataclass(order=True)
+class Point:
+    x: int
+    y: int
+
+p1 = Point(1, 5)
+p2 = Point(2, 3)
+print(p1 < p2)  # True (compara primeiro x, depois y)
+
+5. Usando field
+
+O field permite configurar cada atributo de forma mais detalhada.
+
+📌 5.1 Valores padrão
+from dataclasses import dataclass, field
+
+@dataclass
+class User:
+    name: str
+    active: bool = field(default=True)
+
+📌 5.2 Valores padrão mutáveis (importante!)
+
+Nunca use listas/dicionários diretamente como valor padrão!
+Use default_factory com field.
+
+@dataclass
+class Team:
+    name: str
+    members: list = field(default_factory=list)
+
+t = Team("Pythonistas")
+t.members.append("Luan")
+print(t.members)  # ['Luan']
+
+
+Sem default_factory, todos os objetos compartilhariam a mesma lista, causando bugs!
+
+📌 5.3 Atributos que não entram no __init__
+@dataclass
+class Order:
+    product: str
+    quantity: int
+    total: float = field(init=False)
+
+    def __post_init__(self):
+        self.total = self.quantity * 10.0
+
+
+📌 Explicação:
+
+init=False → não será pedido no construtor.
+
+__post_init__ → método especial chamado logo após o __init__ gerado pelo dataclass.
+
+📌 5.4 Ignorando no repr
+
+Você pode esconder atributos do __repr__:
+
+@dataclass
+class Secret:
+    username: str
+    password: str = field(repr=False)
+
+s = Secret("admin", "1234")
+print(s)  # Secret(username='admin')
+
+6. Resumo das Opções do dataclass
+Parâmetro	Função
+init	Gera __init__. (padrão: True)
+repr	Gera __repr__. (padrão: True)
+eq	Gera __eq__. (padrão: True)
+order	Gera operadores de comparação. (padrão: False)
+frozen	Torna a classe imutável.
