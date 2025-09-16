@@ -1,0 +1,70 @@
+🧠 2. Quando usar metaclasses
+
+Metaclasses são um recurso avançado e devem ser usadas com moderação.
+São úteis quando você precisa alterar ou padronizar o comportamento de várias classes automaticamente no momento da criação.
+
+✅ Casos de uso comuns:
+
+Frameworks (como Django ORM) que criam automaticamente métodos ou mapeamentos para classes.
+
+Garantir que toda subclasse siga um padrão (ex: forçar atributos, transformar nomes, registrar classes em um repositório).
+
+Implementar singletons, fábricas automáticas ou validação de estrutura no momento da definição da classe.
+
+❌ Evite metaclasses se o problema puder ser resolvido com:
+
+Herança simples
+
+Mixins
+
+Decoradores de classe
+
+🏗️ 3. Quando usar dataclasses
+
+Use dataclasses quando sua classe é principalmente para armazenar dados, e você quer:
+
+Inicialização (__init__) automática.
+
+Comparação (__eq__, __lt__, etc.) automática.
+
+Representação (__repr__) amigável.
+
+Código mais enxuto e legível.
+
+📌 Exemplos de uso de dataclass:
+
+Modelos simples de dados (Pessoa, Produto, Configuração).
+
+Objetos imutáveis para usar em cache ou como chaves de dicionário (frozen=True).
+
+Classes para transporte de dados entre camadas do sistema (DTOs).
+
+🏷️ 4. Quando usar classes normais
+
+Use classes normais quando:
+
+Você precisa de lógica de negócio complexa e não apenas armazenar dados.
+
+Sua classe precisa de métodos personalizados e inicialização manual.
+
+Você quer controle total sobre __init__, __repr__, __eq__ etc.
+
+📌 Exemplos de uso de classes normais:
+
+Controladores de API.
+
+Classes de serviço (Service Layer).
+
+Classes que representam recursos com métodos (ex: Arquivo.abrir(), Arquivo.salvar()).
+
+🎯 Resumo Final (Decisão de Uso)
+Situação	Melhor escolha
+Precisa apenas armazenar dados, com inicialização e comparação automáticas	@dataclass
+Precisa personalizar a criação de classes, validar ou modificar atributos no momento da definição	Metaclass
+Precisa de lógica complexa, métodos customizados, controle total sobre atributos	Classe normal
+
+💡 Dica prática:
+
+80% dos casos → use classes normais ou dataclasses.
+
+Metaclasses → use apenas quando realmente precisar manipular como as classes são criadas (geralmente em frameworks ou bibliotecas).
