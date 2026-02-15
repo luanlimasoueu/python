@@ -1,0 +1,2 @@
+Arquivo criado pelo Python!
+Testando compressão.
