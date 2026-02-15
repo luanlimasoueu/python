@@ -1,0 +1,1 @@
+https://realpython.com/solid-principles-python/#the-solid-design-principles-in-python
